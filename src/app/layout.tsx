@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://garusvictorin.dev"),
+  metadataBase: new URL("https://mylookify.vercel.app"),
   title: {
     default: "Garus Victorin — Développeur Full-Stack & IA",
     template: "%s | Garus Victorin",
@@ -34,12 +34,12 @@ export const metadata: Metadata = {
     "Node.js",
     "Garus Victorin",
   ],
-  authors: [{ name: "Garus Victorin", url: "https://garusvictorin.dev" }],
+  authors: [{ name: "Garus Victorin", url: "https://mylookify.vercel.app" }],
   creator: "Garus Victorin",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://garusvictorin.dev",
+    url: "https://mylookify.vercel.app",
     title: "Garus Victorin — Développeur Full-Stack & IA",
     description:
       "Développeur Full-Stack & IA spécialisé dans les plateformes SaaS, les applications mobiles et les systèmes intelligents.",
@@ -89,7 +89,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Garus Victorin",
-    url: "https://garusvictorin.dev",
+    url: "https://mylookify.vercel.app",
     jobTitle: "Full-Stack & AI Developer",
     description:
       "Full-Stack & AI Developer specialized in SaaS platforms, mobile applications and intelligent systems.",
@@ -103,8 +103,8 @@ export default function RootLayout({
       "SaaS",
     ],
     sameAs: [
-      "https://github.com/garusvictorin",
-      "https://linkedin.com/in/garusvictorin",
+      "https://github.com/Garus-Victorin",
+      "https://www.linkedin.com/in/garus-dognon/",
     ],
   };
 
@@ -116,7 +116,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased" style={{ backgroundColor: "#050505", color: "#ffffff" }}>
+      <body className="antialiased bg-[#050505] text-white">
         {children}
         <Analytics />
       </body>

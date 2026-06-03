@@ -4,10 +4,95 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
+import { ExternalLink, ArrowUpRight, ChevronDown } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { PROJECTS } from "@/data";
 import { itemVariants as item, containerVariants as container } from "@/utils";
+
+const INITIAL_VISIBLE = 3;
+
+type Project = typeof PROJECTS[number];
+
+function OtherProjects({ projects }: { projects: Project[] }) {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? projects : projects.slice(0, INITIAL_VISIBLE);
+  const hidden = projects.length - INITIAL_VISIBLE;
+
+  return (
+    <motion.div>
+      <div className="flex items-center gap-4 mb-5">
+        <div className="h-px flex-1 bg-white/5" />
+        <span className="text-xs font-semibold tracking-widest text-[#A1A1AA] uppercase">Autres projets</span>
+        <div className="h-px flex-1 bg-white/5" />
+      </div>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <AnimatePresence initial={false}>
+          {visible.map((project, i) => (
+            <motion.div key={project.id}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+              transition={{ delay: i * 0.05, duration: 0.3 }}
+              className="group glass glass-hover rounded-xl border border-white/5 p-5 relative overflow-hidden hover:border-white/10 transition-all duration-300">
+
+              <div className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: `linear-gradient(90deg, transparent, ${project.color}50, transparent)` }} />
+
+              <div className="flex items-start justify-between mb-3">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black"
+                  style={{ background: `${project.color}15`, color: project.color, border: `1px solid ${project.color}20` }}>
+                  {project.title[0]}
+                </div>
+                <div className="flex gap-1.5">
+                  {project.github !== "#" && (
+                    <a href={project.github} target="_blank" rel="noopener noreferrer"
+                      className="w-7 h-7 rounded-lg glass flex items-center justify-center text-[#A1A1AA] hover:text-white transition-colors border border-white/5">
+                      <SiGithub size={12} />
+                    </a>
+                  )}
+                  {project.live !== "#" && (
+                    <a href={project.live} target="_blank" rel="noopener noreferrer"
+                      className="w-7 h-7 rounded-lg glass flex items-center justify-center text-[#A1A1AA] hover:text-white transition-colors border border-white/5">
+                      <ExternalLink size={12} />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              <h3 className="font-bold text-white text-sm mb-1 group-hover:text-[#FF6B00] transition-colors duration-300">
+                {project.title}
+              </h3>
+              <p className="text-xs text-[#A1A1AA] line-clamp-2 leading-relaxed mb-3">{project.tagline}</p>
+
+              <div className="flex flex-wrap gap-1">
+                {project.stack.slice(0, 3).map((tech) => (
+                  <span key={tech} className="px-2 py-0.5 text-[10px] rounded-md bg-white/5 text-white/50 border border-white/5">
+                    {tech}
+                  </span>
+                ))}
+                {project.stack.length > 3 && (
+                  <span className="px-2 py-0.5 text-[10px] rounded-md bg-white/5 text-white/30">
+                    +{project.stack.length - 3}
+                  </span>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {!showAll && hidden > 0 && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center mt-6">
+          <button
+            onClick={() => setShowAll(true)}
+            className="group flex items-center gap-2 px-6 py-3 glass border border-white/10 rounded-xl text-sm text-[#A1A1AA] hover:text-white hover:border-[#FF6B00]/30 hover:bg-[#FF6B00]/5 transition-all duration-300">
+            Voir {hidden} projet{hidden > 1 ? "s" : ""} de plus
+            <ChevronDown size={14} className="group-hover:translate-y-0.5 transition-transform duration-300" />
+          </button>
+        </motion.div>
+      )}
+    </motion.div>
+  );
+}
 
 export default function Projects() {
   const [activeId, setActiveId] = useState<string>(PROJECTS.filter((p) => p.featured)[0].id);
@@ -171,65 +256,7 @@ export default function Projects() {
           </motion.div>
 
           {/* Other projects */}
-          <motion.div variants={item}>
-            <div className="flex items-center gap-4 mb-5">
-              <div className="h-px flex-1 bg-white/5" />
-              <span className="text-xs font-semibold tracking-widest text-[#A1A1AA] uppercase">Autres projets</span>
-              <div className="h-px flex-1 bg-white/5" />
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {rest.map((project, i) => (
-                <motion.div key={project.id}
-                  initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.07 }}
-                  className="group glass glass-hover rounded-xl border border-white/5 p-5 relative overflow-hidden hover:border-white/10 transition-all duration-300">
-
-                  <div className="absolute top-0 left-0 right-0 h-px"
-                    style={{ background: `linear-gradient(90deg, transparent, ${project.color}50, transparent)` }} />
-
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black"
-                      style={{ background: `${project.color}15`, color: project.color, border: `1px solid ${project.color}20` }}>
-                      {project.title[0]}
-                    </div>
-                    <div className="flex gap-1.5">
-                      {project.github !== "#" && (
-                        <a href={project.github} target="_blank" rel="noopener noreferrer"
-                          className="w-7 h-7 rounded-lg glass flex items-center justify-center text-[#A1A1AA] hover:text-white transition-colors border border-white/5">
-                          <SiGithub size={12} />
-                        </a>
-                      )}
-                      {project.live !== "#" && (
-                        <a href={project.live} target="_blank" rel="noopener noreferrer"
-                          className="w-7 h-7 rounded-lg glass flex items-center justify-center text-[#A1A1AA] hover:text-white transition-colors border border-white/5">
-                          <ExternalLink size={12} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-
-                  <h3 className="font-bold text-white text-sm mb-1 group-hover:text-[#FF6B00] transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs text-[#A1A1AA] line-clamp-2 leading-relaxed mb-3">{project.tagline}</p>
-
-                  <div className="flex flex-wrap gap-1">
-                    {project.stack.slice(0, 3).map((tech) => (
-                      <span key={tech} className="px-2 py-0.5 text-[10px] rounded-md bg-white/5 text-white/50 border border-white/5">
-                        {tech}
-                      </span>
-                    ))}
-                    {project.stack.length > 3 && (
-                      <span className="px-2 py-0.5 text-[10px] rounded-md bg-white/5 text-white/30">
-                        +{project.stack.length - 3}
-                      </span>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          <OtherProjects projects={rest} />
 
         </motion.div>
       </div>

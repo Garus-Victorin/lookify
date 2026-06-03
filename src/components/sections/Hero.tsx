@@ -41,15 +41,21 @@ export default function Hero() {
         ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 107, 0, ${p.opacity})`; ctx.fill();
       });
-      particles.forEach((p, i) => {
-        particles.slice(i + 1).forEach((p2) => {
-          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+      // Limit connection checks to nearest neighbours only
+      const len = particles.length;
+      for (let i = 0; i < len; i++) {
+        let connections = 0;
+        for (let j = i + 1; j < len && connections < 4; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 120) {
-            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y);
+            connections++;
+            ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = `rgba(255, 107, 0, ${0.06 * (1 - dist / 120)})`; ctx.lineWidth = 0.5; ctx.stroke();
           }
-        });
-      });
+        }
+      }
       animId = requestAnimationFrame(draw);
     };
     draw();
