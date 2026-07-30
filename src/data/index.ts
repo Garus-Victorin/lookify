@@ -33,7 +33,7 @@ export const PROJECTS = [
     color: "#FF6B00",
     gradient: "from-orange-500/20 to-red-500/10",
     featured: true,
-    live: "https://chatify-psi-eight.vercel.app",
+    live: "https://chatifybot.vercel.app/",
     github: "https://github.com/Garus-Victorin/chatify",
     metrics: [
       { label: "LLM principal", value: "LLaMA 3.3 70B" },
@@ -229,7 +229,7 @@ export const PROJECTS = [
     color: "#EF4444",
     gradient: "from-red-500/20 to-orange-500/10",
     featured: false,
-    live: "https://cardifycip.vercel.app",
+    live: "https://wadou-tasty.vercel.app/",
     github: "https://github.com/Garus-Victorin/wadoutasty",
     metrics: [
       { label: "Pages", value: "4+" },

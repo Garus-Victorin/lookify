@@ -7,7 +7,6 @@ import TechStack from "@/components/sections/TechStack";
 import Projects from "@/components/sections/Projects";
 import Experience from "@/components/sections/Experience";
 import Services from "@/components/sections/Services";
-import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
@@ -21,7 +20,6 @@ export default function Home() {
         <Projects />
         <Experience />
         <Services />
-        <Testimonials />
         <Contact />
       </main>
       <Footer />
