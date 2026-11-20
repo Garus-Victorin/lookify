@@ -140,14 +140,14 @@ export default function Projects() {
                     style={{ background: `linear-gradient(90deg, transparent, ${active.color}, transparent)` }} />
 
                   {/* Big title watermark */}
-                  <div className="absolute top-8 left-8 right-8 pointer-events-none select-none">
-                    <div className="text-[80px] md:text-[100px] font-black leading-none tracking-tighter opacity-[0.04] text-white">
+                  <div className="absolute top-8 left-8 right-8 pointer-events-none select-none hidden md:block">
+                    <div className="text-5xl md:text-[80px] lg:text-[100px] font-black leading-none tracking-tighter opacity-[0.04] text-white">
                       {active.title}
                     </div>
                   </div>
 
                   {/* Floating metrics */}
-                  <div className="absolute top-8 right-8 flex flex-col gap-2">
+                  <div className="absolute top-8 right-8 hidden md:flex flex-col gap-2">
                     {active.metrics.map((m, i) => (
                       <motion.div key={m.label}
                         initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
@@ -161,6 +161,14 @@ export default function Projects() {
 
                   {/* Bottom content */}
                   <div className="relative z-10 p-8">
+                    <div className="flex flex-wrap gap-2 mb-4 md:hidden">
+                      {active.metrics.map((m) => (
+                        <div key={m.label} className="glass rounded-lg px-3 py-1.5 border border-white/5">
+                          <span className="text-xs font-bold" style={{ color: active.color }}>{m.value}</span>
+                          <span className="text-[10px] text-[#A1A1AA] ml-1.5">{m.label}</span>
+                        </div>
+                      ))}
+                    </div>
                     <div className="flex flex-wrap gap-1.5 mb-4">
                       {active.tags.map((tag) => (
                         <span key={tag} className="px-2.5 py-1 text-xs rounded-full font-medium"
@@ -181,7 +189,7 @@ export default function Projects() {
                       ))}
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-3">
                       <a href={active.live !== "#" ? active.live : undefined}
                         target="_blank" rel="noopener noreferrer"
                         className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-300 hover:scale-105"

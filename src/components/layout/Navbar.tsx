@@ -1,12 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Zap } from "lucide-react";
 import { cn } from "@/utils";
+import { PERSONAL } from "@/data";
 
 const NAV_LINKS = [
   { label: "À propos", href: "#about" },
+  { label: "Expérience", href: "#experience" },
+  { label: "Formation", href: "#education" },
   { label: "Projets", href: "#projects" },
   { label: "Stack", href: "#stack" },
   { label: "Services", href: "#services" },
@@ -14,14 +18,7 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const handleNav = (href: string) => {
     setMobileOpen(false);
@@ -35,18 +32,17 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          scrolled ? "glass border-b border-white/5 py-3" : "bg-transparent py-5"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-[#050505] border-b border-white/5 py-3"
         )}>
         <div className="container-custom px-6 flex items-center justify-between">
-          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-2 group">
+          <Link href="/admin" className="flex items-center gap-2 group">
             <div className="w-8 h-8 rounded-lg bg-[#FF6B00] flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(255,107,0,0.5)] transition-shadow duration-300">
               <Zap size={16} className="text-white fill-white" />
             </div>
             <span className="font-semibold text-white tracking-tight">
               Garus<span className="text-[#FF6B00]">.</span>
             </span>
-          </button>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map((link) => (
@@ -58,7 +54,7 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
-            <a href="mailto:contact@garusvictorin.dev"
+            <a href={`mailto:${PERSONAL.email}`}
               className="px-4 py-2 text-sm font-medium bg-[#FF6B00] text-white rounded-lg hover:bg-[#FF6B00]/90 hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transition-all duration-300">
               Me contacter
             </a>
@@ -75,7 +71,7 @@ export default function Navbar() {
         {mobileOpen && (
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}
-            className="fixed inset-x-0 top-[60px] z-40 glass border-b border-white/5 p-6 md:hidden">
+            className="fixed inset-x-0 top-[72px] z-40 glass border-b border-white/5 p-6 md:hidden">
             <nav className="flex flex-col gap-2">
               {NAV_LINKS.map((link) => (
                 <button key={link.href} onClick={() => handleNav(link.href)}
@@ -83,7 +79,7 @@ export default function Navbar() {
                   {link.label}
                 </button>
               ))}
-              <a href="mailto:contact@garusvictorin.dev"
+              <a href={`mailto:${PERSONAL.email}`}
                 className="mt-2 px-4 py-3 text-center font-medium bg-[#FF6B00] text-white rounded-lg">
                 Me contacter
               </a>

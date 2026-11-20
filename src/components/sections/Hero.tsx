@@ -66,7 +66,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050505]">
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" aria-hidden="true" />
       <div className="absolute inset-0 grid-bg opacity-40" aria-hidden="true" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[600px] md:h-[600px] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(circle, rgba(255,107,0,0.08) 0%, transparent 70%)" }} aria-hidden="true" />
       <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
         style={{ background: "linear-gradient(to top, #050505, transparent)" }} aria-hidden="true" />
@@ -92,7 +92,7 @@ export default function Hero() {
           {PERSONAL.subtitle}
         </motion.p>
 
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 mb-16">
           <button onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
             className="group px-8 py-3.5 bg-[#FF6B00] text-white font-semibold rounded-xl hover:bg-[#FF6B00]/90 hover:shadow-[0_0_30px_rgba(255,107,0,0.4)] transition-all duration-300 flex items-center gap-2">
             Voir mes projets

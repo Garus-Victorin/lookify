@@ -63,7 +63,7 @@ export default async function CaseStudyPage({ params }: Props) {
           </a>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
           {project.metrics.map((m) => (
             <div key={m.label} className="glass rounded-xl border border-white/5 p-5 text-center">
               <div className="text-2xl font-bold mb-1" style={{ color: project.color }}>{m.value}</div>
@@ -105,7 +105,7 @@ export default async function CaseStudyPage({ params }: Props) {
           </ul>
         </section>
 
-        <div className="flex gap-4 pt-8 border-t border-white/5">
+        <div className="flex flex-wrap gap-4 pt-8 border-t border-white/5">
           <Link href="/#projects"
             className="flex items-center gap-2 px-6 py-3 glass rounded-xl border border-white/10 text-sm text-[#A1A1AA] hover:text-white transition-colors">
             <ArrowLeft size={16} /> Tous les projets

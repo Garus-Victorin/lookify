@@ -6,10 +6,10 @@ import { MapPin, Coffee, Rocket, Code2 } from "lucide-react";
 import { itemVariants as item, containerVariants as container } from "@/utils";
 
 const HIGHLIGHTS = [
-  { icon: Code2, label: "4+ ans", sub: "À construire des produits" },
-  { icon: Rocket, label: "20+ projets", sub: "Livrés en production" },
-  { icon: Coffee, label: "Full-Stack", sub: "Frontend jusqu'au DevOps" },
-  { icon: MapPin, label: "Remote", sub: "Disponible partout" },
+  { icon: Code2, label: "Full-Stack", sub: "Frontend & Backend" },
+  { icon: Rocket, label: "Mobile", sub: "Flutter & React Native" },
+  { icon: Coffee, label: "IA & APIs", sub: "RAG, REST, GraphQL" },
+  { icon: MapPin, label: "Cotonou", sub: "Bénin — Remote" },
 ];
 
 export default function About() {
@@ -19,7 +19,7 @@ export default function About() {
     <section id="about" className="section-padding bg-[#050505]">
       <div className="container-custom px-6">
         <motion.div ref={ref} variants={container} initial="hidden" animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 gap-16 items-center">
+          className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div>
             <motion.div variants={item}>
               <span className="text-xs font-semibold tracking-widest text-[#FF6B00] uppercase">À propos</span>
@@ -33,15 +33,15 @@ export default function About() {
 
             <motion.div variants={item} className="space-y-4 text-[#A1A1AA] leading-relaxed">
               <p>
-                Je suis un développeur Full-Stack &amp; IA autodidacte qui construit des produits scalables et prêts pour la production de A à Z. Je pense comme un ingénieur produit — en obsédant simultanément l&apos;architecture, la performance et l&apos;expérience utilisateur.
+                Je m’appelle Victorin Dognon (Garus Victorin). Étudiant en 3ème année de licence en Systèmes Informatiques et Logiciels, passionné par la création de smart solutions web et mobiles modernes. Expérimenté en développement frontend et backend, APIs, architectures scalables, applications SaaS et intégration de solutions intelligentes.
               </p>
               <p>
-                Mon expertise couvre tout le stack : de la création d&apos;interfaces React pixel-perfect à l&apos;architecture de backends Node.js, en passant par le développement d&apos;apps Flutter et l&apos;intégration de systèmes IA avec RAG, recherche vectorielle et orchestration LLM.
+                Mon parcours combine des stages (CFRII, Clinic Informatique Plus) et des expériences professionnelles (Clinic Informatique Plus, LeBIATech), avec une soutenance de BTS mention Excellente en 2026.
               </p>
               <p>
-                Je suis passionné par l&apos;intersection entre{" "}
-                <span className="text-white font-medium">l&apos;excellence technique</span> et la{" "}
-                <span className="text-white font-medium">vision produit</span>. Chaque ligne de code que j&apos;écris est intentionnelle, scalable et conçue pour durer.
+                Je suis passionné par l’intersection entre{" "}
+                <span className="text-white font-medium">l’excellence technique</span> et la{" "}
+                <span className="text-white font-medium">vision produit</span>. Chaque ligne de code que j’écris est intentionnelle, scalable et conçue pour durer.
               </p>
             </motion.div>
 

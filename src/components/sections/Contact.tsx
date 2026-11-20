@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Send, Mail, CheckCircle2 } from "lucide-react";
+import { Mail, CheckCircle2 } from "lucide-react";
 import { SiGithub, SiWhatsapp } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
 import { PERSONAL } from "@/data";
@@ -41,7 +41,7 @@ export default function Contact() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
             <motion.div variants={item} className="space-y-6">
               <div className="glass rounded-2xl border border-white/5 p-6">
                 <div className="flex items-center gap-3 mb-4">
@@ -59,6 +59,11 @@ export default function Contact() {
                   className="flex items-center gap-3 glass glass-hover rounded-xl border border-white/5 p-4 group">
                   <Mail size={18} className="text-[#FF6B00]" />
                   <span className="text-sm text-[#A1A1AA] group-hover:text-white transition-colors">{PERSONAL.email}</span>
+                </a>
+                <a href={`tel:${PERSONAL.phone}`}
+                  className="flex items-center gap-3 glass glass-hover rounded-xl border border-white/5 p-4 group">
+                  <span className="text-[#FF6B00] text-sm font-bold">☎</span>
+                  <span className="text-sm text-[#A1A1AA] group-hover:text-white transition-colors">{PERSONAL.phone}</span>
                 </a>
                 {[
                   { icon: SiWhatsapp, label: "WhatsApp", href: PERSONAL.whatsapp, color: "#25D366" },

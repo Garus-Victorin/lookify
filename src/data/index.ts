@@ -5,11 +5,12 @@ export const PERSONAL = {
   subtitle:
     "Développeur Full-Stack & IA spécialisé dans les plateformes SaaS, les applications mobiles et les systèmes intelligents.",
   email: "garusvictorin@gmail.com",
+  phone: "+229 0153631367",
   github: "https://github.com/Garus-Victorin",
   linkedin: "https://www.linkedin.com/in/garus-dognon/",
   whatsapp: "https://wa.me/22953631367",
   twitter: "https://twitter.com/garusvictorin",
-  location: "Remote — Monde entier",
+  location: "Cotonou, Bénin",
   available: true,
   stats: [
     { label: "Projets livrés", value: "10+", suffix: "" },
@@ -318,14 +319,14 @@ const SKILLS_BY_CATEGORY = {
     { name: "CSS", level: 95, icon: "SiCss", color: "#1572B6" },
     { name: "React", level: 95, icon: "SiReact", color: "#61DAFB" },
     { name: "Next.js", level: 95, icon: "SiNextdotjs", color: "#FFFFFF" },
-    { name: "Vue.js", level: 75, icon: "SiVuedotjs", color: "#4FC08D" },
+    { name: "Angular", level: 70, icon: "SiAngular", color: "#DD0031" },
     { name: "Tailwind CSS", level: 95, icon: "SiTailwindcss", color: "#06B6D4" },
     { name: "Bootstrap", level: 85, icon: "SiBootstrap", color: "#7952B3" },
     { name: "Framer Motion", level: 85, icon: "SiFramer", color: "#0055FF" },
     { name: "GSAP", level: 80, icon: "SiGreensock", color: "#88CE02" },
   ],
   Backend: [
-    { name: "Node.js", level: 90, icon: "SiNodedotjs", color: "#339933" },
+    { name: "Express.js", level: 85, icon: "SiNodedotjs", color: "#339933" },
     { name: "Flask", level: 80, icon: "SiFlask", color: "#FFFFFF" },
     { name: "Django", level: 70, icon: "SiDjango", color: "#092E20" },
     { name: "Laravel", level: 75, icon: "SiLaravel", color: "#FF2D20" },
@@ -415,30 +416,81 @@ export const SERVICES = [
 
 export const EXPERIENCE = [
   {
-    role: "Développeur Full-Stack & IA",
-    company: "Freelance",
-    period: "2022 — Présent",
+    role: "Développeur Logiciel",
+    company: "LeBIATech",
+    period: "Août 2026 – Présent",
     description:
-      "Conception et développement de produits SaaS, intégrations IA et applications full-stack pour des clients. Spécialisé en Next.js, React, Node.js et systèmes propulsés par l'IA.",
+      "Conception logicielle et développement d’applications.",
     highlights: [
-      "Livraison de 10+ applications en production déployées sur Vercel",
-      "Construction de plateformes IA avec pipeline RAG hybride et agent ReAct",
-      "Développement d'extensions VS Code avec analyse AST et LLM multi-provider",
-      "Architecture de systèmes backend scalables avec Node.js, Flask & Prisma",
+      "Conception logicielle",
     ],
   },
   {
-    role: "Ingénieur Produit",
-    company: "Projets Personnels",
-    period: "2020 — Présent",
+    role: "Développeur Web & Mobile",
+    company: "Clinic Informatique Plus",
+    period: "Septembre 2025 – Juin 2026",
     description:
-      "Conception et développement de produits full-stack du concept à la production, avec focus sur les intégrations IA, les outils développeur et les interfaces premium.",
+      "Conception d’applications mobiles pour des particuliers et maintenance de sites web clients. Expérience freelance en développement full-stack : produits SaaS, intégrations IA, applications web/mobile.",
     highlights: [
-      "Chatify — plateforme IA avec RAG hybride, agent ReAct et 5 personnalités IA",
-      "Qodify — extension VS Code IA comparable à GitHub Copilot, local-first",
-      "First Class Auto — plateforme automobile premium, Lighthouse 95+",
-      "Bookify — blog full-stack Flask avec auth CSRF, RBAC et CMS",
+      "Conception d’application mobile pour des particuliers",
+      "Maintenance de sites web des clients",
+      "Développement full-stack (Next.js, React, Node.js)",
+      "Intégrations IA (RAG, LLM) et produits SaaS",
     ],
+  },
+  {
+    role: "Stagiaire Développeur Web & Mobile",
+    company: "Clinic Informatique Plus",
+    period: "Juillet 2025 – Septembre 2025",
+    description:
+      "Stage en développement web et mobile : conception d’interfaces, développement d’applications et d’APIs.",
+    highlights: [
+      "Développement Web et Mobile",
+      "Design UI/UX",
+      "Conception d’APIs RESTful & GraphQL",
+    ],
+  },
+  {
+    role: "Stagiaire Développeur Web",
+    company: "CFRII",
+    period: "Juillet 2024 – Septembre 2024",
+    description:
+      "Stage de développement web : création et développement de sites web, conception d’applications web.",
+    highlights: [
+      "Création et développement de sites web",
+      "Conception d’applications web",
+    ],
+  },
+];
+
+export const EDUCATION = [
+  {
+    degree: "BTS (Brevet de Technicien Supérieur)",
+    school: "—",
+    period: "2026",
+    description: "Soutenance du BTS avec la mention Excellente.",
+    highlights: ["Mention Excellente"],
+  },
+  {
+    degree: "Licence 3 — Système Informatique et Logiciel (SIL)",
+    school: "—",
+    period: "En cours",
+    description: "Étudiant en 3ème année de licence en SIL.",
+    highlights: [],
+  },
+  {
+    degree: "Diplôme Technique en Installation et Maintenance en Informatique (DT IMI)",
+    school: "—",
+    period: "2024",
+    description: "Obtention du DT IMI.",
+    highlights: [],
+  },
+  {
+    degree: "BEPC",
+    school: "—",
+    period: "2021",
+    description: "Obtention du BEPC (Brevet d’Études du Premier Cycle).",
+    highlights: [],
   },
 ];
 

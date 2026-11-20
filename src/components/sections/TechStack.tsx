@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { ChevronDown } from "lucide-react";
 import { SKILLS } from "@/data";
 import { itemVariants as item, containerVariants as container } from "@/utils";
 import {
@@ -31,6 +32,7 @@ const CATEGORIES = Object.keys(SKILLS) as Array<keyof typeof SKILLS>;
 
 export default function TechStack() {
   const [active, setActive] = useState<keyof typeof SKILLS>("Tout");
+  const [showAll, setShowAll] = useState(false);
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
@@ -47,7 +49,7 @@ export default function TechStack() {
 
           <motion.div variants={item} className="flex flex-wrap justify-center gap-2 mb-10">
             {CATEGORIES.map((cat) => (
-              <button key={cat} onClick={() => setActive(cat)}
+              <button key={cat} onClick={() => { setActive(cat); setShowAll(false); }}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   active === cat
                     ? "bg-[#FF6B00] text-white shadow-[0_0_20px_rgba(255,107,0,0.3)]"
@@ -62,34 +64,52 @@ export default function TechStack() {
             <motion.div key={active} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}
               className={`grid gap-3 ${active === "Tout" ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7" : "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"}`}>
-              {SKILLS[active].map((skill, i) => {
-                const IconComponent = ICON_MAP[skill.icon] ?? FaDatabase;
+              {(() => {
+                const all = SKILLS[active];
+                const visible = showAll ? all : all.slice(0, 7);
+                const hidden = all.length - 7;
                 return (
-                  <motion.div key={skill.name}
-                    initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.05, duration: 0.3 }}
-                    className="glass glass-hover rounded-xl p-4 border border-white/5 group text-center flex flex-col items-center gap-3 cursor-default">
-                    <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-                      style={{ backgroundColor: `${skill.color}18`, boxShadow: `0 0 0 1px ${skill.color}22` }}>
-                      <IconComponent size={22} style={{ color: skill.color }} />
-                    </div>
-                    <div className="text-sm font-medium text-white group-hover:text-[#FF6B00] transition-colors duration-300 leading-tight">
-                      {skill.name}
-                    </div>
-                    <div className="w-full">
-                      <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }} animate={{ width: `${skill.level}%` }}
-                          transition={{ duration: 0.8, delay: i * 0.05 + 0.2 }}
-                          className="h-full rounded-full"
-                          style={{ background: `linear-gradient(90deg, ${skill.color}, ${skill.color}99)` }} />
-                      </div>
-                      <div className="text-xs text-[#A1A1AA] mt-1">{skill.level}%</div>
-                    </div>
-                  </motion.div>
+                  <>
+                    {visible.map((skill, i) => {
+                      const IconComponent = ICON_MAP[skill.icon] ?? FaDatabase;
+                      return (
+                        <motion.div key={skill.name}
+                          initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: i * 0.05, duration: 0.3 }}
+                          className="glass glass-hover rounded-xl p-4 border border-white/5 group text-center flex flex-col items-center gap-3 cursor-default">
+                          <div
+                            className="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                            style={{ backgroundColor: `${skill.color}18`, boxShadow: `0 0 0 1px ${skill.color}22` }}>
+                            <IconComponent size={22} style={{ color: skill.color }} />
+                          </div>
+                          <div className="text-sm font-medium text-white group-hover:text-[#FF6B00] transition-colors duration-300 leading-tight">
+                            {skill.name}
+                          </div>
+                          <div className="w-full">
+                            <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                              <motion.div
+                                initial={{ width: 0 }} animate={{ width: `${skill.level}%` }}
+                                transition={{ duration: 0.8, delay: i * 0.05 + 0.2 }}
+                                className="h-full rounded-full"
+                                style={{ background: `linear-gradient(90deg, ${skill.color}, ${skill.color}99)` }} />
+                            </div>
+                            <div className="text-xs text-[#A1A1AA] mt-1">{skill.level}%</div>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                    {!showAll && hidden > 0 && (
+                      <motion.button
+                        onClick={() => setShowAll(true)}
+                        initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                        className="glass glass-hover rounded-xl p-4 border border-white/5 group text-center flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-[#FF6B00]/30 transition-all duration-300">
+                        <div className="text-sm font-medium text-[#FF6B00]">Voir {hidden} de plus</div>
+                        <ChevronDown size={16} className="text-[#FF6B00]" />
+                      </motion.button>
+                    )}
+                  </>
                 );
-              })}
+              })()}
             </motion.div>
           </AnimatePresence>
         </motion.div>
